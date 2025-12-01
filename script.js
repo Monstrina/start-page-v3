@@ -24,15 +24,15 @@ const defaultLinks = {
     ],
     'social': [
         { name: 'Reddit', url: 'https://reddit.com', icon: 'fa-brands fa-reddit-alien' },
-        { name: 'Twitter', url: 'https://twitter.com', icon: 'fa-brands fa-x-twitter' },
+        { name: 'Twitter', url: 'https://twitter. com', icon: 'fa-brands fa-x-twitter' },
         { name: 'Discord', url: 'https://discord.com', icon: 'fa-brands fa-discord' },
-        { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'fa-brands fa-linkedin' },
+        { name: 'LinkedIn', url: 'https://linkedin. com', icon: 'fa-brands fa-linkedin' },
         { name: 'Mastodon', url: 'https://mastodon.social', icon: 'fa-brands fa-mastodon' },
         { name: 'Twitch', url: 'https://twitch.tv', icon: 'fa-brands fa-twitch' }
     ],
     'media': [
         { name: 'YouTube', url: 'https://youtube.com', icon: 'fa-brands fa-youtube' },
-        { name: 'Spotify', url: 'https://spotify.com', icon: 'fa-brands fa-spotify' },
+        { name: 'Spotify', url: 'https://spotify. com', icon: 'fa-brands fa-spotify' },
         { name: 'Netflix', url: 'https://netflix.com', icon: 'fa-solid fa-film' },
         { name: 'SoundCloud', url: 'https://soundcloud.com', icon: 'fa-brands fa-soundcloud' },
         { name: 'Prime Video', url: 'https://primevideo.com', icon: 'fa-brands fa-amazon' },
@@ -57,7 +57,7 @@ const categoryColors = ['mauve', 'blue', 'red', 'green', 'peach', 'teal', 'pink'
 const allSearchEngines = {
     google: {
         name: 'Google',
-        url: 'https://www.google.com/search?q=',
+        url: 'https://www.google.com/search? q=',
         icon: '<i class="fa-brands fa-google"></i>'
     },
     duckduckgo: {
@@ -67,27 +67,27 @@ const allSearchEngines = {
     },
     github: {
         name: 'GitHub',
-        url: 'https://github.com/search?q=',
+        url: 'https://github. com/search?q=',
         icon: '<i class="fa-brands fa-github"></i>'
     },
     youtube: {
         name: 'YouTube',
-        url: 'https://www.youtube.com/results?search_query=',
+        url: 'https://www. youtube.com/results?search_query=',
         icon: '<i class="fa-brands fa-youtube"></i>'
     },
     bing: {
         name: 'Bing',
-        url: 'https://www.bing.com/search?q=',
+        url: 'https://www.bing.com/search? q=',
         icon: '<i class="fa-brands fa-microsoft"></i>'
     },
     amazon: {
         name: 'Amazon',
-        url: 'https://www.amazon.com/s?k=',
+        url: 'https://www. amazon.com/s?k=',
         icon: '<i class="fa-brands fa-amazon"></i>'
     },
     wikipedia: {
         name: 'Wikipedia',
-        url: 'https://en.wikipedia.org/wiki/Special:Search?search=',
+        url: 'https://en. wikipedia.org/wiki/Special:Search? search=',
         icon: '<i class="fa-brands fa-wikipedia-w"></i>'
     }
 };
@@ -105,18 +105,20 @@ function loadSettings() {
         tempUnit: 'F',
         showQuotes: 'true',
         enabledEngines: ['google', 'duckduckgo', 'github', 'youtube'],
-        preferredEngine: 'google'
+        preferredEngine: 'google',
+        openWeatherApiKey: ''
     };
     
     return {
-        userName: localStorage.getItem('userName') ?? defaults.userName,
-        theme: localStorage.getItem('theme') ?? defaults.theme,
+        userName: localStorage.getItem('userName') ??  defaults.userName,
+        theme: localStorage. getItem('theme') ?? defaults.theme,
         colorMode: localStorage.getItem('colorMode') ?? defaults.colorMode,
-        timeFormat: localStorage.getItem('timeFormat') ?? defaults.timeFormat,
-        tempUnit: localStorage.getItem('tempUnit') ?? defaults.tempUnit,
-        showQuotes: localStorage.getItem('showQuotes') ?? defaults.showQuotes,
-        enabledEngines: JSON.parse(localStorage.getItem('enabledEngines')) ?? defaults.enabledEngines,
-        preferredEngine: localStorage.getItem('preferredEngine') ?? defaults.preferredEngine
+        timeFormat: localStorage.getItem('timeFormat') ?? defaults. timeFormat,
+        tempUnit: localStorage. getItem('tempUnit') ?? defaults.tempUnit,
+        showQuotes: localStorage. getItem('showQuotes') ?? defaults. showQuotes,
+        enabledEngines: JSON.parse(localStorage. getItem('enabledEngines')) ?? defaults.enabledEngines,
+        preferredEngine: localStorage.getItem('preferredEngine') ?? defaults.preferredEngine,
+        openWeatherApiKey: localStorage. getItem('openWeatherApiKey') ??  defaults.openWeatherApiKey
     };
 }
 
@@ -131,14 +133,14 @@ function saveSettings(key, value) {
 
 function loadCategories() {
     const saved = localStorage.getItem('categories');
-    if (!saved) return [...defaultCategories];
+    if (! saved) return [... defaultCategories];
     
     // Migrate old HTML format to simple class format
     const cats = JSON.parse(saved);
     return cats.map(cat => {
         // Check if icon is in old HTML format
         if (cat.icon && cat.icon.includes('<i class="')) {
-            const match = cat.icon.match(/class="([^"]+)"/);
+            const match = cat.icon. match(/class="([^"]+)"/);
             if (match) {
                 cat.icon = match[1];
             }
@@ -152,12 +154,12 @@ function saveCategories(cats) {
 }
 
 function loadLinks() {
-    const saved = localStorage.getItem('links');
+    const saved = localStorage. getItem('links');
     return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultLinks));
 }
 
 function saveLinks(lnks) {
-    localStorage.setItem('links', JSON.stringify(lnks));
+    localStorage.setItem('links', JSON. stringify(lnks));
 }
 
 // Initialize settings
@@ -195,12 +197,12 @@ let searchInput, timeElement, dateElement, greetingElement, weatherElement, quot
 // ========================================
 
 function updateDateTime() {
-    if (!timeElement || !dateElement) return;
+    if (! timeElement || !dateElement) return;
     
     const now = new Date();
     
     let hours = now.getHours();
-    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const minutes = now.getMinutes(). toString().padStart(2, '0');
     let timeString;
     
     if (settings.timeFormat === '12') {
@@ -208,7 +210,7 @@ function updateDateTime() {
         hours = hours % 12 || 12;
         timeString = `${hours}:${minutes} ${period}`;
     } else {
-        timeString = `${hours.toString().padStart(2, '0')}:${minutes}`;
+        timeString = `${hours. toString().padStart(2, '0')}:${minutes}`;
     }
     
     timeElement.textContent = timeString;
@@ -216,7 +218,7 @@ function updateDateTime() {
     const options = { weekday: 'long', month: 'short', day: 'numeric' };
     dateElement.textContent = now.toLocaleDateString('en-US', options);
     
-    updateGreeting(now.getHours());
+    updateGreeting(now. getHours());
 }
 
 function updateGreeting(hour) {
@@ -243,7 +245,7 @@ function updateGreeting(hour) {
     
     const iconElement = document.getElementById('greeting-icon');
     if (iconElement) {
-        iconElement.innerHTML = iconHtml;
+        iconElement. innerHTML = iconHtml;
     }
 }
 
@@ -252,7 +254,7 @@ function updateGreeting(hour) {
 // ========================================
 
 function performSearch(query) {
-    if (!query.trim()) return;
+    if (!query. trim()) return;
     
     const engine = allSearchEngines[currentEngine];
     if (!engine) return;
@@ -262,18 +264,18 @@ function performSearch(query) {
 }
 
 function setSearchEngine(engine) {
-    if (!allSearchEngines[engine]) return;
-    if (!settings.enabledEngines.includes(engine)) return;
+    if (! allSearchEngines[engine]) return;
+    if (! settings.enabledEngines.includes(engine)) return;
     
     currentEngine = engine;
     saveSettings('preferredEngine', engine);
     
-    document.querySelectorAll('.search-engines .engine').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.engine === engine);
+    document.querySelectorAll('.search-engines . engine'). forEach(btn => {
+        btn.classList.toggle('active', btn. dataset.engine === engine);
     });
     
     if (searchInput) {
-        searchInput.placeholder = `Search ${allSearchEngines[engine].name}...`;
+        searchInput. placeholder = `Search ${allSearchEngines[engine].name}... `;
     }
 }
 
@@ -288,15 +290,15 @@ function renderSearchEngines() {
             <button class="engine ${engineId === currentEngine ? 'active' : ''}" 
                     data-engine="${engineId}" 
                     title="${engine.name} (${index + 1})">
-                ${engine.icon}
+                ${engine. icon}
             </button>
         `;
-    }).join('');
+    }). join('');
     
     // Rebind click events
     container.querySelectorAll('.engine').forEach(btn => {
-        btn.addEventListener('click', () => {
-            setSearchEngine(btn.dataset.engine);
+        btn. addEventListener('click', () => {
+            setSearchEngine(btn. dataset.engine);
             if (searchInput) searchInput.focus();
         });
     });
@@ -306,7 +308,7 @@ function renderSearchEngines() {
 }
 
 function updateKeyboardHints() {
-    const hintsContainer = document.querySelector('.keyboard-hints');
+    const hintsContainer = document. querySelector('.keyboard-hints');
     if (!hintsContainer) return;
     
     const engineCount = settings.enabledEngines.length;
@@ -314,7 +316,7 @@ function updateKeyboardHints() {
     
     hintsContainer.innerHTML = `
         <span class="hint"><kbd>/</kbd> Search</span>
-        ${engineHint ? `<span class="hint">${engineHint}</span>` : ''}
+        ${engineHint ?  `<span class="hint">${engineHint}</span>` : ''}
         <span class="hint"><kbd>Esc</kbd> Clear</span>
     `;
 }
@@ -323,20 +325,24 @@ function updateKeyboardHints() {
 // Weather Function (OpenWeather API Integration)
 // ========================================
 
-// Replace with your OpenWeather API key
-const OPENWEATHER_API_KEY = 'PASTE_YOUR_OPENWEATHER_API_KEY_HERE';
-
 // Default location (city name or coordinates) - you may choose to make this user-configurable
 const DEFAULT_LOCATION = 'New York'; // e.g., city name or {lat: xx, lon: yy}
 
 async function updateWeather() {
     if (!weatherElement) return;
 
+    // Check if API key is configured
+    if (!settings.openWeatherApiKey) {
+        // Fall back to mock weather data if no API key
+        showMockWeather();
+        return;
+    }
+
     let query = `q=${DEFAULT_LOCATION}`;
     // Optionally, use geolocation:
     // if ('geolocation' in navigator) {
-    //     navigator.geolocation.getCurrentPosition(pos => {
-    //         query = `lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+    //     navigator.geolocation. getCurrentPosition(pos => {
+    //         query = `lat=${pos.coords. latitude}&lon=${pos.coords.longitude}`;
     //         fetchWeather(query);
     //     }, () => {
     //         fetchWeather(query);
@@ -352,31 +358,31 @@ async function fetchWeather(query) {
     try {
         const unit = settings.tempUnit === 'C' ? 'metric' : 'imperial';
         const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${OPENWEATHER_API_KEY}&units=${unit}`
+            `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${settings.openWeatherApiKey}&units=${unit}`
         );
         if (!response.ok) throw new Error('Weather API error');
         const data = await response.json();
 
         // Get temperature, condition, and icon info
-        const temp = Math.round(data.main.temp);
-        const condition = data.weather[0].main; // e.g., "Clouds"
+        const temp = Math.round(data. main.temp);
+        const condition = data.weather[0]. main; // e.g., "Clouds"
         const iconCode = data.weather[0].icon;
-        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.svg`;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}. svg`;
 
-        weatherElement.textContent = `${temp}°${unit === 'metric' ? 'C' : 'F'} ${condition}`;
+        weatherElement.textContent = `${temp}°${unit === 'metric' ?  'C' : 'F'} ${condition}`;
         const iconElement = weatherElement.previousElementSibling;
         if (iconElement) {
             // Show OpenWeather icon
-            iconElement.innerHTML = `<img src="${iconUrl}" alt="${condition}" style="width:1.5em;height:1.5em;vertical-align:middle;">`;
+            iconElement.innerHTML = `<img src="${iconUrl}" alt="${condition}" style="width:1. 5em;height:1.5em;vertical-align:middle;">`;
         }
     } catch (err) {
-        weatherElement.textContent = 'Weather unavailable';
-        const iconElement = weatherElement.previousElementSibling;
-        if (iconElement) iconElement.innerHTML = `<i class="fa-solid fa-cloud"></i>`;
+        // Fall back to mock weather on error
+        showMockWeather();
     }
 }
-function updateWeather() {
-    if (!weatherElement) return;
+
+function showMockWeather() {
+    if (! weatherElement) return;
     
     const mockWeatherData = [
         { tempF: 72, condition: 'Partly Cloudy', icon: 'fa-cloud-sun' },
@@ -389,7 +395,7 @@ function updateWeather() {
         { tempF: 55, condition: 'Windy', icon: 'fa-wind' }
     ];
     
-    const weather = mockWeatherData[Math.floor(Math.random() * mockWeatherData.length)];
+    const weather = mockWeatherData[Math.floor(Math.random() * mockWeatherData. length)];
     
     let temp, unit;
     if (settings.tempUnit === 'C') {
@@ -414,14 +420,14 @@ function updateWeather() {
 
 const quotes = [
     '"The only way to do great work is to love what you do." - Steve Jobs',
-    '"First, solve the problem. Then, write the code." - John Johnson',
+    '"First, solve the problem.  Then, write the code." - John Johnson',
     '"Simplicity is the soul of efficiency." - Austin Freeman',
     '"Make it work, make it right, make it fast." - Kent Beck',
     '"Talk is cheap. Show me the code." - Linus Torvalds',
     '"Creativity is intelligence having fun." - Albert Einstein',
     '"Done is better than perfect." - Sheryl Sandberg',
     '"Stay hungry, stay foolish." - Steve Jobs',
-    '"Code is like humor. When you have to explain it, it’s bad." - Cory House',
+    '"Code is like humor.  When you have to explain it, it's bad." - Cory House',
 ];
 
 function updateQuote() {
@@ -431,7 +437,7 @@ function updateQuote() {
     if (settings.showQuotes === 'true') {
         quoteWidget.style.display = 'flex';
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        quoteElement.textContent = randomQuote;
+        quoteElement. textContent = randomQuote;
     } else {
         quoteWidget.style.display = 'none';
     }
@@ -447,19 +453,19 @@ function renderLinksGrid() {
     const colorMode = settings.colorMode;
     
     linksGrid.innerHTML = categories.map((category, index) => {
-        const categoryLinks = links[category.id] || [];
+        const categoryLinks = links[category. id] || [];
         const colorClass = colorMode === 'multi' ? categoryColors[index % categoryColors.length] : 'mauve';
         
         return `
             <section class="link-group" data-category="${category.id}" data-color="${colorClass}">
                 <h2 class="group-title">
                     <span class="title-icon"><i class="${category.icon}"></i></span>
-                    ${category.name}
+                    ${category. name}
                 </h2>
                 <div class="links">
                     ${categoryLinks.map(link => `
                         <a href="${link.url}" class="link-card">
-                            <span class="link-icon"><i class="${link.icon || 'fa-solid fa-link'}"></i></span>
+                            <span class="link-icon"><i class="${link. icon || 'fa-solid fa-link'}"></i></span>
                             <span class="link-text">${link.name}</span>
                         </a>
                     `).join('')}
@@ -479,11 +485,11 @@ function updateGridLayout() {
     linksGrid.classList.remove('grid-single', 'grid-even', 'grid-odd');
     
     if (categoryCount === 1) {
-        linksGrid.classList.add('grid-single');
+        linksGrid. classList.add('grid-single');
     } else if (categoryCount % 2 === 0) {
         linksGrid.classList.add('grid-even');
     } else {
-        linksGrid.classList.add('grid-odd');
+        linksGrid.classList. add('grid-odd');
     }
 }
 
@@ -501,7 +507,7 @@ function initSettings() {
     const helpOverlay = document.getElementById('help-overlay');
     const helpClose = document.getElementById('help-close');
     
-    if (!settingsBtn || !settingsOverlay || !settingsClose) return;
+    if (! settingsBtn || ! settingsOverlay || !settingsClose) return;
     
     // Open settings
     settingsBtn.addEventListener('click', () => {
@@ -517,7 +523,7 @@ function initSettings() {
     // Close on overlay click
     settingsOverlay.addEventListener('click', (e) => {
         if (e.target === settingsOverlay) {
-            settingsOverlay.classList.remove('active');
+            settingsOverlay.classList. remove('active');
         }
     });
     
@@ -539,9 +545,9 @@ function initSettings() {
     }
     
     // Close on Escape key
-    document.addEventListener('keydown', (e) => {
+    document. addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (settingsOverlay.classList.contains('active')) {
+            if (settingsOverlay.classList. contains('active')) {
                 settingsOverlay.classList.remove('active');
             }
             if (helpOverlay && helpOverlay.classList.contains('active')) {
@@ -555,7 +561,7 @@ function initSettings() {
         tab.addEventListener('click', () => {
             const tabId = tab.dataset.tab;
             
-            document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.settings-tab'). forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
             
             tab.classList.add('active');
@@ -572,7 +578,7 @@ function initSettings() {
     // Toggle button handlers
     document.querySelectorAll('.toggle-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            const setting = btn.dataset.setting;
+            const setting = btn.dataset. setting;
             const value = btn.dataset.value;
             
             saveSettings(setting, value);
@@ -593,16 +599,29 @@ function initSettings() {
     });
     
     // Name input handler
-    const nameInput = document.getElementById('setting-name');
+    const nameInput = document. getElementById('setting-name');
     if (nameInput) {
-        nameInput.addEventListener('input', (e) => {
+        nameInput. addEventListener('input', (e) => {
             saveSettings('userName', e.target.value);
             updateGreeting(new Date().getHours());
         });
     }
     
+    // OpenWeather API key input handler
+    const apiKeyInput = document. getElementById('setting-weather-api-key');
+    if (apiKeyInput) {
+        apiKeyInput.addEventListener('input', (e) => {
+            saveSettings('openWeatherApiKey', e. target.value. trim());
+        });
+        
+        // Update weather when user finishes typing (on blur)
+        apiKeyInput.addEventListener('blur', () => {
+            updateWeather();
+        });
+    }
+    
     // Search engine checkboxes
-    document.querySelectorAll('#search-engine-options input').forEach(checkbox => {
+    document.querySelectorAll('#search-engine-options input'). forEach(checkbox => {
         checkbox.addEventListener('change', () => {
             const enabledEngines = [];
             document.querySelectorAll('#search-engine-options input:checked').forEach(cb => {
@@ -616,7 +635,7 @@ function initSettings() {
             
             saveSettings('enabledEngines', enabledEngines);
             
-            if (!enabledEngines.includes(currentEngine)) {
+            if (! enabledEngines.includes(currentEngine)) {
                 setSearchEngine(enabledEngines[0]);
             }
             
@@ -640,9 +659,9 @@ function initSettings() {
     const linkCategorySelect = document.getElementById('link-category-select');
     if (linkCategorySelect) {
         linkCategorySelect.addEventListener('change', (e) => {
-            const addLinkBtn = document.getElementById('add-link-btn');
+            const addLinkBtn = document. getElementById('add-link-btn');
             if (addLinkBtn) {
-                addLinkBtn.disabled = !e.target.value;
+                addLinkBtn. disabled = !e. target.value;
             }
             renderLinksForCategory(e.target.value);
         });
@@ -658,8 +677,14 @@ function populateSettingsUI() {
         nameInput.value = settings.userName;
     }
     
+    // Populate OpenWeather API key input
+    const apiKeyInput = document.getElementById('setting-weather-api-key');
+    if (apiKeyInput) {
+        apiKeyInput.value = settings.openWeatherApiKey;
+    }
+    
     // Populate search engine checkboxes
-    document.querySelectorAll('#search-engine-options input').forEach(checkbox => {
+    document.querySelectorAll('#search-engine-options input'). forEach(checkbox => {
         checkbox.checked = settings.enabledEngines.includes(checkbox.dataset.engine);
     });
     
@@ -667,9 +692,9 @@ function populateSettingsUI() {
 }
 
 function updateToggleStates() {
-    document.querySelectorAll('.toggle-btn').forEach(btn => {
+    document.querySelectorAll('.toggle-btn'). forEach(btn => {
         const setting = btn.dataset.setting;
-        const value = btn.dataset.value;
+        const value = btn. dataset.value;
         btn.classList.toggle('active', settings[setting] === value);
     });
 }
@@ -696,17 +721,17 @@ function renderCategoriesSettings() {
     `).join('');
     
     if (addBtn) {
-        addBtn.disabled = categories.length >= 8;
+        addBtn. disabled = categories.length >= 8;
     }
     
     // Bind events
-    container.querySelectorAll('.category-item').forEach(item => {
+    container.querySelectorAll('.category-item'). forEach(item => {
         const categoryId = item.dataset.id;
         const iconPreview = item.querySelector('.icon-preview i');
         
-        item.querySelectorAll('input').forEach(input => {
+        item.querySelectorAll('input'). forEach(input => {
             input.addEventListener('input', () => {
-                const field = input.dataset.field;
+                const field = input.dataset. field;
                 const category = categories.find(c => c.id === categoryId);
                 if (category) {
                     category[field] = input.value;
@@ -722,7 +747,7 @@ function renderCategoriesSettings() {
             });
         });
         
-        item.querySelector('.delete-btn').addEventListener('click', () => {
+        item.querySelector('.delete-btn'). addEventListener('click', () => {
             if (categories.length > 1) {
                 deleteCategory(categoryId);
             }
@@ -749,7 +774,7 @@ function addCategory() {
 }
 
 function deleteCategory(categoryId) {
-    categories = categories.filter(c => c.id !== categoryId);
+    categories = categories. filter(c => c.id !== categoryId);
     delete links[categoryId];
     
     saveCategories(categories);
@@ -767,7 +792,7 @@ function renderLinksSettings() {
     updateLinkCategorySelect();
     const select = document.getElementById('link-category-select');
     if (select && select.value) {
-        renderLinksForCategory(select.value);
+        renderLinksForCategory(select. value);
     } else {
         const container = document.getElementById('links-list');
         if (container) container.innerHTML = '';
@@ -783,8 +808,8 @@ function updateLinkCategorySelect() {
     select.innerHTML = '<option value="">-- Select a category --</option>' +
         categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
     
-    if (categories.find(c => c.id === currentValue)) {
-        select.value = currentValue;
+    if (categories.find(c => c. id === currentValue)) {
+        select. value = currentValue;
     }
 }
 
@@ -794,7 +819,7 @@ function renderLinksForCategory(categoryId) {
     
     if (!container) return;
     
-    if (!categoryId) {
+    if (! categoryId) {
         container.innerHTML = '';
         if (addBtn) addBtn.disabled = true;
         return;
@@ -806,7 +831,7 @@ function renderLinksForCategory(categoryId) {
         <div class="link-item" data-index="${index}">
             <span class="icon-preview"><i class="${link.icon || 'fa-solid fa-link'}"></i></span>
             <input type="text" class="icon-input" value="${link.icon || 'fa-solid fa-link'}" placeholder="fa-solid fa-link" data-field="icon">
-            <input type="text" value="${link.name}" placeholder="Link Name" maxlength="20" data-field="name">
+            <input type="text" value="${link. name}" placeholder="Link Name" maxlength="20" data-field="name">
             <input type="url" class="url-input" value="${link.url}" placeholder="https://..." data-field="url">
             <button class="delete-btn" title="Delete Link">
                 <i class="fa-solid fa-trash"></i>
@@ -819,13 +844,13 @@ function renderLinksForCategory(categoryId) {
     }
     
     // Bind events
-    container.querySelectorAll('.link-item').forEach(item => {
-        const index = parseInt(item.dataset.index);
-        const iconPreview = item.querySelector('.icon-preview i');
+    container.querySelectorAll('.link-item'). forEach(item => {
+        const index = parseInt(item. dataset.index);
+        const iconPreview = item. querySelector('.icon-preview i');
         
-        item.querySelectorAll('input').forEach(input => {
+        item.querySelectorAll('input'). forEach(input => {
             input.addEventListener('input', () => {
-                const field = input.dataset.field;
+                const field = input.dataset. field;
                 if (links[categoryId] && links[categoryId][index]) {
                     links[categoryId][index][field] = input.value;
                     saveLinks(links);
@@ -833,13 +858,13 @@ function renderLinksForCategory(categoryId) {
                     
                     // Update icon preview
                     if (field === 'icon' && iconPreview) {
-                        iconPreview.className = input.value || 'fa-solid fa-link';
+                        iconPreview. className = input.value || 'fa-solid fa-link';
                     }
                 }
             });
         });
         
-        item.querySelector('.delete-btn').addEventListener('click', () => {
+        item.querySelector('.delete-btn'). addEventListener('click', () => {
             deleteLink(categoryId, index);
         });
     });
@@ -847,10 +872,10 @@ function renderLinksForCategory(categoryId) {
 
 function addLink() {
     const select = document.getElementById('link-category-select');
-    const categoryId = select ? select.value : null;
+    const categoryId = select ?  select.value : null;
     if (!categoryId) return;
     
-    if (!links[categoryId]) {
+    if (! links[categoryId]) {
         links[categoryId] = [];
     }
     
@@ -869,7 +894,7 @@ function addLink() {
 
 function deleteLink(categoryId, index) {
     if (links[categoryId]) {
-        links[categoryId].splice(index, 1);
+        links[categoryId]. splice(index, 1);
         saveLinks(links);
         renderLinksForCategory(categoryId);
         renderLinksGrid();
@@ -882,11 +907,11 @@ function deleteLink(categoryId, index) {
 
 function handleKeyboard(event) {
     const settingsOverlay = document.getElementById('settings-overlay');
-    const isSettingsOpen = settingsOverlay && settingsOverlay.classList.contains('active');
+    const isSettingsOpen = settingsOverlay && settingsOverlay. classList.contains('active');
     
     if (event.key === '/' && document.activeElement !== searchInput && !isSettingsOpen) {
         event.preventDefault();
-        if (searchInput) searchInput.focus();
+        if (searchInput) searchInput. focus();
     }
     
     if (event.key === 'Escape' && searchInput) {
@@ -895,7 +920,7 @@ function handleKeyboard(event) {
     }
     
     // Dynamic engine switching based on enabled engines
-    if (document.activeElement !== searchInput && !isSettingsOpen) {
+    if (document.activeElement !== searchInput && ! isSettingsOpen) {
         const num = parseInt(event.key);
         if (num >= 1 && num <= settings.enabledEngines.length) {
             setSearchEngine(settings.enabledEngines[num - 1]);
@@ -912,7 +937,7 @@ function initEventListeners() {
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 const value = searchInput.value;
-                if (!executeCommand(value)) {
+                if (! executeCommand(value)) {
                     performSearch(value);
                 } else {
                     searchInput.value = '';
@@ -932,13 +957,13 @@ const commands = {
     'theme dark': () => applyTheme('dark'),
     'theme light': () => applyTheme('light'),
     'new tab': () => window.open('about:blank', '_blank'),
-    'github': () => window.location.href = 'https://github.com',
+    'github': () => window. location.href = 'https://github.com',
     'settings': () => document.getElementById('settings-overlay').classList.add('active'),
 };
 
 function executeCommand(input) {
-    const cmd = input.toLowerCase().trim();
-    if (cmd.startsWith(':')) {
+    const cmd = input.toLowerCase(). trim();
+    if (cmd. startsWith(':')) {
         const command = cmd.slice(1);
         if (commands[command]) {
             commands[command]();
@@ -960,7 +985,7 @@ function init() {
     greetingElement = document.getElementById('greeting');
     weatherElement = document.getElementById('weather');
     quoteElement = document.getElementById('quote');
-    linksGrid = document.getElementById('links-grid');
+    linksGrid = document. getElementById('links-grid');
     
     // Render dynamic content
     renderLinksGrid();
