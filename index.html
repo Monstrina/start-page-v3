@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>startpage</title>
+    <title>стартовая страница</title>
     <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -22,12 +22,12 @@
         <header class="header">
             <div class="greeting">
                 <span class="icon" id="greeting-icon"><i class="fa-solid fa-sun"></i></span>
-                <span class="greeting-text" id="greeting">Good evening, Bryan</span>
+                <span class="greeting-text" id="greeting">Добрый вечер, Bryan</span>
             </div>
             <div class="header-right">
                 <div class="datetime">
                     <span class="time" id="time">00:00</span>
-                    <span class="date" id="date">Thursday, Nov 28</span>
+                    <span class="date" id="date">Четверг, 28 ноя</span>
                 </div>
             </div>
         </header>
@@ -36,55 +36,56 @@
         <div class="help-overlay" id="help-overlay">
             <div class="help-modal">
                 <div class="help-header">
-                    <h3><i class="fa-solid fa-circle-question"></i> Help</h3>
+                    <h3><i class="fa-solid fa-circle-question"></i> Помощь</h3>
                     <button class="help-close" id="help-close">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
                 <div class="help-content">
                     <section class="help-section">
-                        <h4><i class="fa-solid fa-icons"></i> Customizing Icons</h4>
-                        <p>This startpage uses <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">Font Awesome</a> icons. You can customize icons for categories and links in Settings.</p>
+                        <h4><i class="fa-solid fa-icons"></i> Настройка значков</h4>
+                        <p>Эта стартовая страница использует <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">Font Awesome</a>. Вы можете настроить значки для категорий и ссылок в Настройках.</p>
                     </section>
                     
                     <section class="help-section">
-                        <h4><i class="fa-solid fa-magnifying-glass"></i> Step 1: Find an Icon</h4>
+                        <h4><i class="fa-solid fa-magnifying-glass"></i> Шаг 1: Найдите значок</h4>
                         <ol class="help-steps">
-                            <li>Go to <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">fontawesome.com/search</a></li>
-                            <li>Type a keyword in the search box (e.g., "linux", "music", "cloud")</li>
-                            <li>Click the <strong>"Free"</strong> filter button on the right side to show only free icons</li>
-                            <li>Click on the icon you want to use</li>
+                            <li>Перейдите на <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">fontawesome.com/search</a></li>
+                            <li>Введите ключевое слово в поле поиска (например, "linux", "music", "cloud")</li>
+                            <li>Нажмите кнопку фильтра <strong>"Free"</strong> справа, чтобы отобразить только бесплатные значки</li>
+                            <li>Нажмите на значок, который хотите использовать</li>
                         </ol>
                     </section>
                     
                     <section class="help-section">
-                        <h4><i class="fa-solid fa-copy"></i> Step 2: Copy the Icon Code</h4>
-                        <ol class="help-steps">
-                            <li>After clicking an icon, a popup will appear</li>
-                            <li>Look for the HTML code that looks like: <code>&lt;i class="fa-brands fa-linux"&gt;&lt;/i&gt;</code></li>
-                            <li>Copy <strong>only the class value</strong> — the part inside the quotes</li>
-                            <li>For example, copy: <code>fa-brands fa-linux</code></li>
+                        <h4><i class="fa-solid fa-copy"></i> Шаг 2: Скопируйте код значка</h4>
+
+                                <ol class="help-steps">
+                            <li>После нажатия на значок появится всплывающее окно</li>
+                            <li>Найдите HTML-код, который выглядит так: <code>&lt;i class="fa-brands fa-linux"&gt;&lt;/i&gt;</code></li>
+                            <li>Скопируйте <strong>только значение класса</strong> — часть в кавычках</li>
+                            <li>Например, скопируйте: <code>fa-brands fa-linux</code></li>
                         </ol>
                     </section>
                     
                     <section class="help-section">
-                        <h4><i class="fa-solid fa-paste"></i> Step 3: Use in Settings</h4>
+                        <h4><i class="fa-solid fa-paste"></i> Шаг 3: Использование в настройках</h4>
                         <ol class="help-steps">
-                            <li>Open Settings <i class="fa-solid fa-gear"></i> and go to the Categories or Links tab</li>
-                            <li>Paste the icon code into the icon field (the first input box)</li>
-                            <li>You'll see a live preview of your icon appear</li>
+                            <li>Откройте Настройки <i class="fa-solid fa-gear"></i> и перейдите на вкладку Категории или Ссылки</li>
+                            <li>Вставьте код значка в поле значка (первое поле ввода)</li>
+                            <li>Вы увидите, как появится предварительный просмотр вашего значка</li>
                         </ol>
                     </section>
                     
                     <section class="help-section">
-                        <h4><i class="fa-solid fa-lightbulb"></i> Examples</h4>
+                        <h4><i class="fa-solid fa-lightbulb"></i> Примеры</h4>
                         <ul class="icon-examples">
-                            <li><code>fa-solid fa-code</code> → <i class="fa-solid fa-code"></i> (solid style)</li>
-                            <li><code>fa-brands fa-github</code> → <i class="fa-brands fa-github"></i> (brand logo)</li>
+                            <li><code>fa-solid fa-code</code> → <i class="fa-solid fa-code"></i> (сплошной стиль)</li>
+                            <li><code>fa-brands fa-github</code> → <i class="fa-brands fa-github"></i> (логотип бренда)</li>
                             <li><code>fa-solid fa-gamepad</code> → <i class="fa-solid fa-gamepad"></i></li>
                             <li><code>fa-brands fa-spotify</code> → <i class="fa-brands fa-spotify"></i></li>
                         </ul>
-                        <p class="help-tip"><strong>Tip:</strong> Use <code>fa-solid</code> for general icons or <code>fa-brands</code> for company/brand logos.</p>
+                        <p class="help-tip"><strong>Совет:</strong> Используйте <code>fa-solid</code> для общих значков или <code>fa-brands</code> для логотипов компаний/брендов.</p>
                     </section>
                 </div>
             </div>
@@ -94,7 +95,7 @@
         <div class="settings-overlay" id="settings-overlay">
             <div class="settings-modal">
                 <div class="settings-header">
-                    <h3><i class="fa-solid fa-gear"></i> Settings</h3>
+                    <h3><i class="fa-solid fa-gear"></i> Настройки</h3>
                     <button class="settings-close" id="settings-close">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
@@ -103,13 +104,14 @@
                 <!-- Settings Tabs -->
                 <div class="settings-tabs">
                     <button class="settings-tab active" data-tab="general">
-                        <i class="fa-solid fa-sliders"></i> General
+                        <i class="fa-solid fa-sliders"></i> Общие
                     </button>
                     <button class="settings-tab" data-tab="categories">
-                        <i class="fa-solid fa-folder"></i> Categories
+                        <i class="fa-solid fa-folder"></i> Категории
                     </button>
                     <button class="settings-tab" data-tab="links">
-                        <i class="fa-solid fa-link"></i> Links
+
+                                <i class="fa-solid fa-link"></i> Ссылки
                     </button>
                 </div>
 
@@ -119,48 +121,49 @@
                         <div class="setting-item">
                             <div class="setting-label">
                                 <i class="fa-solid fa-user"></i>
-                                <span>Your Name (optional)</span>
+                                <span>Ваше имя (необязательно)</span>
                             </div>
-                            <input type="text" id="setting-name" class="setting-input" placeholder="Enter your name" maxlength="20">
+                            <input type="text" id="setting-name" class="setting-input" placeholder="Введите ваше имя" maxlength="20">
                         </div>
                         
                         <div class="setting-item">
                             <div class="setting-label">
                                 <i class="fa-solid fa-palette"></i>
-                                <span>Theme</span>
+                                <span>Тема</span>
                             </div>
                             <div class="setting-toggle">
-                                <button class="toggle-btn" data-setting="theme" data-value="dark"><i class="fa-solid fa-moon"></i> Dark</button>
-                                <button class="toggle-btn" data-setting="theme" data-value="light"><i class="fa-solid fa-sun"></i> Light</button>
+                                <button class="toggle-btn" data-setting="theme" data-value="dark"><i class="fa-solid fa-moon"></i> Темная</button>
+                                <button class="toggle-btn" data-setting="theme" data-value="light"><i class="fa-solid fa-sun"></i> Светлая</button>
                             </div>
                         </div>
                         
                         <div class="setting-item">
                             <div class="setting-label">
                                 <i class="fa-solid fa-swatchbook"></i>
-                                <span>Category Colors</span>
+                                <span>Цвета категорий</span>
                             </div>
                             <div class="setting-toggle">
-                                <button class="toggle-btn" data-setting="colorMode" data-value="multi"><i class="fa-solid fa-rainbow"></i> Multi</button>
-                                <button class="toggle-btn" data-setting="colorMode" data-value="single"><i class="fa-solid fa-circle"></i> Single</button>
+                                <button class="toggle-btn" data-setting="colorMode" data-value="multi"><i class="fa-solid fa-rainbow"></i> Разные</button>
+                                <button class="toggle-btn" data-setting="colorMode" data-value="single"><i class="fa-solid fa-circle"></i> Одинаковый</button>
                             </div>
                         </div>
                         
                         <div class="setting-item">
                             <div class="setting-label">
                                 <i class="fa-solid fa-clock"></i>
-                                <span>Time Format</span>
+                                <span>Формат времени</span>
                             </div>
                             <div class="setting-toggle">
-                                <button class="toggle-btn" data-setting="timeFormat" data-value="12">12hr</button>
-                                <button class="toggle-btn" data-setting="timeFormat" data-value="24">24hr</button>
+                                <button class="toggle-btn" data-setting="timeFormat" data-value="12">12ч</button>
+                                <button class="toggle-btn" data-setting="timeFormat" data-value="24">24ч</button>
                             </div>
                         </div>
                         
                         <div class="setting-item">
                             <div class="setting-label">
                                 <i class="fa-solid fa-temperature-half"></i>
-                                <span>Temperature</span>
+
+                                        <span>Температура</span>
                             </div>
                             <div class="setting-toggle">
                                 <button class="toggle-btn" data-setting="tempUnit" data-value="F">°F</button>
@@ -171,42 +174,30 @@
                         <div class="setting-item">
                             <div class="setting-label">
                                 <i class="fa-solid fa-quote-left"></i>
-                                <span>Show Quotes</span>
+                                <span>Показывать цитаты</span>
                             </div>
                             <div class="setting-toggle">
-                                <button class="toggle-btn" data-setting="showQuotes" data-value="true"><i class="fa-solid fa-eye"></i> Show</button>
-                                <button class="toggle-btn" data-setting="showQuotes" data-value="false"><i class="fa-solid fa-eye-slash"></i> Hide</button>
+                                <button class="toggle-btn" data-setting="showQuotes" data-value="true"><i class="fa-solid fa-eye"></i> Показать</button>
+                                <button class="toggle-btn" data-setting="showQuotes" data-value="false"><i class="fa-solid fa-eye-slash"></i> Скрыть</button>
                             </div>
                         </div>
                         
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <i class="fa-solid fa-map-marker-alt"></i>
-                                <span>Weather Location</span>
-                            </div>
-                            <input type="text" id="setting-weather-location" class="setting-input" placeholder="Chicago,IL,US">
-                        </div>
 
-                        <div class="setting-item">
-    <label for="setting-weather-location">Weather Location (City Name)</label>
-    <div class="input-group">
-        <input type="text" id="setting-weather-location" placeholder="e.g. London,GB or Moscow,RU" autocomplete="off">
-        <p class="help-text">Used for automatic lookup (Geocoding). Leave blank if using manual Lat/Lon.</p>
-    </div>
-</div>
 
 <div class="setting-item">
-    <label>Manual Coordinates (Latitude & Longitude)</label>
-    <div class="input-group input-group-split">
-        <input type="text" id="setting-weather-latitude" placeholder="Latitude (e.g., 55.75)">
-        <input type="text" id="setting-weather-longitude" placeholder="Longitude (e.g., 37.61)">
-    </div>
-    <p class="help-text">If filled, this overrides the City Name lookup. Use decimal format.</p>
+    <label>
+        <span class="title-icon"><i class="fa-sharp fa-solid fa-location-dot"></i></span>
+        Ручные координаты
+    </label>
+<div class="input-group input-group-split">
+    <input type="text" id="setting-weather-latitude" class="setting-input" placeholder="Широта">
+    <input type="text" id="setting-weather-longitude" class="setting-input" placeholder="Долгота">
+</div>
 </div>
                         <div class="setting-item setting-item-vertical">
                             <div class="setting-label">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                <span>Search Engines</span>
+                                <span>Поисковые системы</span>
                             </div>
                             <div class="search-engine-grid" id="search-engine-options">
                                 <label class="engine-checkbox">
@@ -221,8 +212,7 @@
                                 </label>
                                 <label class="engine-checkbox">
                                     <input type="checkbox" data-engine="github" checked>
-                                    <span class="engine-icon"><i class="fa-brands fa-github"></i></span>
-                                    <span>GitHub</span>
+                                    <span class="engine-icon"><i class="fa-brands fa-github"></i></span>                                        <span>GitHub</span>
                                 </label>
                                 <label class="engine-checkbox">
                                     <input type="checkbox" data-engine="youtube" checked>
@@ -255,41 +245,41 @@
                     
                     <!-- Categories Tab -->
                     <div class="settings-panel" data-panel="categories">
-                        <p class="panel-description">Add up to 8 categories. You can use emoji or text for icons.</p>
+                        <p class="panel-description">Добавьте до 8 категорий. Для значков можно использовать эмодзи или текст.</p>
                         <div class="categories-list" id="categories-list">
                             <!-- Categories will be populated dynamically -->
                         </div>
                         <button class="add-btn" id="add-category-btn">
-                            <i class="fa-solid fa-plus"></i> Add Category
+                            <i class="fa-solid fa-plus"></i> Добавить категорию
                         </button>
                     </div>
                     
                     <!-- Links Tab -->
                     <div class="settings-panel" data-panel="links">
-                        <p class="panel-description">Select a category, then add up to 10 links.</p>
+                        <p class="panel-description">Выберите категорию, затем добавьте до 10 ссылок.</p>
                         <div class="category-selector">
-                            <label for="link-category-select">Category:</label>
-                            <select id="link-category-select" class="setting-select">
-                                <option value="">-- Select a category --</option>
+                            <label for="link-category-select">Категория:</label>
+                                <select id="link-category-select" class="setting-select">
+                                <option value="">-- Выберите категорию --</option>
                             </select>
                         </div>
                         <div class="links-list" id="links-list">
-                            <!-- Links will be populated dynamically -->
+                            <!-- Ссылки будут заполняться динамически -->
                         </div>
                         <button class="add-btn" id="add-link-btn" disabled>
-                            <i class="fa-solid fa-plus"></i> Add Link
+                            <i class="fa-solid fa-plus"></i> Добавить ссылку
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Search Bar -->
+        <!-- Поисковая строка -->
         <div class="search-row">
             <div class="search-container">
                 <div class="search-box">
                     <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" id="search" placeholder="Search the web..." autocomplete="off" autofocus>
+                    <input type="text" id="search" placeholder="Искать в сети..." autocomplete="off" autofocus>
                     <div class="search-engines">
                         <button class="engine active" data-engine="google" title="Google"><i class="fa-brands fa-google"></i></button>
                         <button class="engine" data-engine="duckduckgo" title="DuckDuckGo"><span class="nf-icon">󰇥</span></button>
@@ -299,37 +289,36 @@
                 </div>
             </div>
             <div class="toolbar-btns">
-                <button class="toolbar-btn" id="help-btn" title="Help">
+                <button class="toolbar-btn" id="help-btn" title="Помощь">
                     <i class="fa-solid fa-circle-question"></i>
                 </button>
-                <button class="toolbar-btn" id="settings-btn" title="Settings">
+                <button class="toolbar-btn" id="settings-btn" title="Настройки">
                     <i class="fa-solid fa-gear"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Quick Links Grid -->
+        <!-- Сетка быстрых ссылок -->
         <main class="links-grid" id="links-grid">
-            <!-- Categories and links will be populated dynamically -->
+            <!-- Категории и ссылки будут заполняться динамически -->
         </main>
 
-        <!-- Footer Widget -->
+        <!-- Нижний виджет -->
         <footer class="footer">
             <div class="widget weather-widget">
                 <span class="widget-icon"><i class="fa-solid fa-cloud-sun"></i></span>
-                <span class="widget-text" id="weather">Loading...</span>
+                <span class="widget-text" id="weather">Загрузка...</span>
             </div>
             <div class="widget quote-widget">
                 <span class="widget-icon"><i class="fa-solid fa-quote-left"></i></span>
-                <span class="widget-text" id="quote">"The only way to do great work is to love what you do."</span>
+                <span class="widget-text" id="quote">"Единственный способ делать великую работу — любить то, что ты делаешь."</span>
             </div>
         </footer>
 
-        <!-- Keyboard Hints -->
+        <!-- Подсказки по клавиатуре -->
         <div class="keyboard-hints">
-            <span class="hint"><kbd>/</kbd> Search</span>
-            <span class="hint"><kbd>1-4</kbd> Engine</span>
-            <span class="hint"><kbd>Esc</kbd> Clear</span>
+            <span class="hint"><kbd>/</kbd> Поиск</span>                <span class="hint"><kbd>1-4</kbd> Двигатель</span>
+            <span class="hint"><kbd>Esc</kbd> Очистить</span>
         </div>
     </div>
 
