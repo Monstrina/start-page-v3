@@ -101,6 +101,10 @@ const allSearchEngines = {
 // Settings Management
 // ========================================
 
+// ========================================
+// Settings Management
+// ========================================
+
 function loadSettings() {
     const defaults = {
         userName: '',
@@ -112,7 +116,11 @@ function loadSettings() {
         enabledEngines: ['google', 'duckduckgo', 'github', 'youtube'],
         preferredEngine: 'google',
         weatherLocation: 'New York,NY,US',
-        openWeatherApiKey: ''
+        // --- НОВЫЕ СТРОКИ ---
+        weatherLatitude: '', // Добавьте это
+        weatherLongitude: '', // Добавьте это
+        // ------------------
+        openWeatherApiKey: '' // Если вы удалили эту строку в предыдущем шаге, пропустите
     };
     
     return {
@@ -125,7 +133,11 @@ function loadSettings() {
         enabledEngines: JSON.parse(localStorage.getItem('enabledEngines')) ?? defaults.enabledEngines,
         preferredEngine: localStorage.getItem('preferredEngine') ?? defaults.preferredEngine,
         weatherLocation: localStorage.getItem('weatherLocation') ?? defaults.weatherLocation,
-        openWeatherApiKey: localStorage.getItem('openWeatherApiKey') ??  defaults.openWeatherApiKey
+        // --- НОВЫЕ СТРОКИ ---
+        weatherLatitude: localStorage.getItem('weatherLatitude') ?? defaults.weatherLatitude, // Добавьте это
+        weatherLongitude: localStorage.getItem('weatherLongitude') ?? defaults.weatherLongitude, // Добавьте это
+        // ------------------
+        openWeatherApiKey: localStorage.getItem('openWeatherApiKey') ??  defaults.openWeatherApiKey // Если вы удалили эту строку, пропустите
     };
 }
 
@@ -344,7 +356,17 @@ function updateKeyboardHints() {
 async function updateWeather() {
     if (!weatherElement) return;
 
-    // Use a default location if none is set
+    // 1. Check for manual Lat/Lon input
+    const lat = settings.weatherLatitude;
+    const lon = settings.weatherLongitude;
+
+    if (lat && lon) {
+        // Use coordinates directly
+        fetchWeather(lat, lon);
+        return;
+    }
+
+    // 2. Fallback to Geocoding if Lat/Lon are empty
     const location = settings.weatherLocation || 'New York,NY,US';
     
     try {
@@ -688,6 +710,38 @@ function initSettings() {
             updateWeather();
         });
     }
+
+// ... существующий обработчик locationInput ...
+
+    // Weather latitude input handler
+    const latInput = document.getElementById('setting-weather-latitude');
+    if (latInput) {
+        latInput.addEventListener('input', (e) => {
+            // Очищаем location, чтобы избежать путаницы
+            saveSettings('weatherLocation', ''); 
+            saveSettings('weatherLatitude', e.target.value.trim());
+        });
+        
+        latInput.addEventListener('blur', () => {
+            updateWeather();
+        });
+    }
+
+    // Weather longitude input handler
+    const lonInput = document.getElementById('setting-weather-longitude');
+    if (lonInput) {
+        lonInput.addEventListener('input', (e) => {
+            // Очищаем location, чтобы избежать путаницы
+            saveSettings('weatherLocation', '');
+            saveSettings('weatherLongitude', e.target.value.trim());
+        });
+        
+        lonInput.addEventListener('blur', () => {
+            updateWeather();
+        });
+    }
+    
+    // ... остальная часть initSettings ...
     
     // OpenWeather API key input handler
     const apiKeyInput = document.getElementById('setting-weather-api-key');
@@ -759,11 +813,27 @@ function populateSettingsUI() {
         nameInput.value = settings.userName;
     }
     
-    // Populate weather location input
+// Populate weather location input
     const locationInput = document.getElementById('setting-weather-location');
     if (locationInput) {
         locationInput.value = settings.weatherLocation;
     }
+    
+    // --- НОВЫЕ СТРОКИ ---
+    // Populate latitude input
+    const latInput = document.getElementById('setting-weather-latitude');
+    if (latInput) {
+        latInput.value = settings.weatherLatitude;
+    }
+    
+    // Populate longitude input
+    const lonInput = document.getElementById('setting-weather-longitude');
+    if (lonInput) {
+        lonInput.value = settings.weatherLongitude;
+    }
+    // ------------------
+    
+    // Populate OpenWeather API key input (если он остался)...
     
     // Populate OpenWeather API key input
     const apiKeyInput = document.getElementById('setting-weather-api-key');
