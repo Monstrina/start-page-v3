@@ -344,34 +344,45 @@ function updateKeyboardHints() {
 async function updateWeather() {
     if (!weatherElement) return;
 
-    // Check if API key is configured
-    if (!settings.openWeatherApiKey || !settings.weatherLocation) {
-        // Fall back to mock weather data if no API key or location
-        showMockWeather();
-        return;
-    }
+    // Use a default location if none is set
+    const location = settings.weatherLocation || 'New York,NY,US';
+    
+    try {
+        // Step 1: Geocoding (City name to coordinates)
+        const geoResponse = await fetch(
+            `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(location)}&count=1&language=en&format=json`
+        );
+        
+        if (!geoResponse.ok) {
+            throw new Error('Geocoding API error');
+        }
+        
+        const geoData = await geoResponse.json();
+        
+        if (!geoData.results || geoData.results.length === 0) {
+            console.warn(`Location not found: ${location}. Falling back to mock weather.`);
+            showMockWeather();
+            return;
+        }
+        
+        const latitude = geoData.results[0].latitude;
+        const longitude = geoData.results[0].longitude;
 
-    let query = `q=${encodeURIComponent(settings.weatherLocation)}`;
-    // Optionally, use geolocation:
-    // if ('geolocation' in navigator) {
-    //     navigator.geolocation. getCurrentPosition(pos => {
-    //         query = `lat=${pos.coords. latitude}&lon=${pos.coords.longitude}`;
-    //         fetchWeather(query);
-    //     }, () => {
-    //         fetchWeather(query);
-    //     });
-    // } else {
-    //     fetchWeather(query);
-    // }
-    // For now, just use city name:
-    fetchWeather(query);
+        // Step 2: Fetch weather using coordinates
+        fetchWeather(latitude, longitude);
+
+    } catch (err) {
+        console.error('Geocoding fetch error:', err);
+        // Fall back to mock weather on error
+        showMockWeather();
+    }
 }
 
-async function fetchWeather(query) {
+async function fetchWeather(latitude, longitude) {
     try {
-        const unit = settings.tempUnit === 'C' ? 'metric' : 'imperial';
+        const unit = settings.tempUnit === 'C' ? 'celsius' : 'fahrenheit';
         const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${settings.openWeatherApiKey}&units=${unit}`
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&temperature_unit=${unit}`
         );
         
         if (!response.ok) {
@@ -381,21 +392,20 @@ async function fetchWeather(query) {
         
         const data = await response.json();
 
-        // Get temperature, condition, and icon info
-        const temp = Math.round(data.main.temp);
-        const condition = data.weather[0].main; // e.g., "Clouds"
-        const iconCode = data.weather[0].icon;
-        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
-        const tempUnit = unit === 'metric' ? '°C' : '°F';
+        // Open-Meteo uses WMO Weather interpretation codes (WMO_CODE)
+        const temp = Math.round(data.current.temperature_2m);
+        const wmoCode = data.current.weather_code; 
+        
+        const { condition, iconClass } = getWeatherCondition(wmoCode); // Helper function to interpret WMO code
+        const tempUnit = unit === 'celsius' ? '°C' : '°F';
         
         // Get the parent widget and find the icon element
         const widgetElement = weatherElement.parentElement;
         if (widgetElement) {
             const iconElement = widgetElement.querySelector('.widget-icon');
             if (iconElement) {
-                // Show OpenWeather icon
-                iconElement.innerHTML = `<img src="${iconUrl}" alt="" style="width:2em;height:2em;margin:-0.25em 0;vertical-align:middle;">`;
+                // Show FontAwesome icon based on WMO code
+                iconElement.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
             }
         }
         
@@ -405,6 +415,35 @@ async function fetchWeather(query) {
         // Fall back to mock weather on error
         showMockWeather();
     }
+}
+
+function getWeatherCondition(code) {
+    let condition, iconClass;
+    // Simplified WMO codes to FontAwesome icons and conditions
+    // Full list: https://open-meteo.com/en/docs/api#current_weather
+    if (code >= 95) { // Thunderstorm
+        condition = 'Thunderstorm';
+        iconClass = 'fa-cloud-bolt';
+    } else if (code >= 71) { // Snow
+        condition = 'Snow';
+        iconClass = 'fa-snowflake';
+    } else if (code >= 51) { // Drizzle/Rain
+        condition = 'Rain';
+        iconClass = 'fa-cloud-rain';
+    } else if (code >= 45) { // Fog
+        condition = 'Fog';
+        iconClass = 'fa-smog';
+    } else if (code >= 1) { // Clear/Mostly Clear/Partly Cloudy
+        // Check for day/night to determine sun/moon icon - simple check based on time is not possible here, 
+        // so we'll use a general cloud-based icon for safety unless Open-Meteo provides is_day.
+        condition = code === 1 ? 'Mostly Clear' : (code === 2 ? 'Partly Cloudy' : 'Cloudy');
+        iconClass = code === 0 ? 'fa-sun' : 'fa-cloud-sun'; // Use sun for 0 (Clear sky)
+    } else { // 0: Clear sky
+        condition = 'Clear';
+        iconClass = 'fa-sun'; 
+    }
+    
+    return { condition, iconClass };
 }
 
 function showMockWeather() {
