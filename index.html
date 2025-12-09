@@ -186,7 +186,23 @@
                             </div>
                             <input type="text" id="setting-weather-location" class="setting-input" placeholder="Chicago,IL,US">
                         </div>
-                        
+
+                        <div class="setting-item">
+    <label for="setting-weather-location">Weather Location (City Name)</label>
+    <div class="input-group">
+        <input type="text" id="setting-weather-location" placeholder="e.g. London,GB or Moscow,RU" autocomplete="off">
+        <p class="help-text">Used for automatic lookup (Geocoding). Leave blank if using manual Lat/Lon.</p>
+    </div>
+</div>
+
+<div class="setting-item">
+    <label>Manual Coordinates (Latitude & Longitude)</label>
+    <div class="input-group input-group-split">
+        <input type="text" id="setting-weather-latitude" placeholder="Latitude (e.g., 55.75)">
+        <input type="text" id="setting-weather-longitude" placeholder="Longitude (e.g., 37.61)">
+    </div>
+    <p class="help-text">If filled, this overrides the City Name lookup. Use decimal format.</p>
+</div>
                         <div class="setting-item setting-item-vertical">
                             <div class="setting-label">
                                 <i class="fa-solid fa-magnifying-glass"></i>
