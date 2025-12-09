@@ -165,6 +165,8 @@ body {
     z-index: 1;
 }
 
+
+
 /* Ambient Background Effects */
 .ambient-bg {
     position: fixed;
@@ -1504,3 +1506,4 @@ kbd {
         animation: none;
     }
 }
+
