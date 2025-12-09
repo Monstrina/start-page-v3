@@ -235,29 +235,30 @@ function updateDateTime() {
     timeElement.textContent = timeString;
     
     const options = { weekday: 'long', month: 'short', day: 'numeric' };
-    dateElement.textContent = now.toLocaleDateString('en-US', options);
+    dateElement.textContent = now.toLocaleDateString('ru-RU', options);
     
     updateGreeting(now.getHours());
 }
 
 function updateGreeting(hour) {
-    if (!greetingElement) return;
-    
-    let greeting, iconHtml;
-    
-    if (hour >= 5 && hour < 12) {
-        greeting = 'Good morning';
-        iconHtml = '<span class="nf-icon">󰖜</span>';
-    } else if (hour >= 12 && hour < 17) {
-        greeting = 'Good afternoon';
-        iconHtml = '<i class="fa-solid fa-sun"></i>';
-    } else if (hour >= 17 && hour < 21) {
-        greeting = 'Good evening';
-        iconHtml = '<span class="nf-icon">󰖛</span>';
-    } else {
-        greeting = 'Good night';
-        iconHtml = '<i class="fa-solid fa-moon"></i>';
-    }
+if (!greetingElement) return;
+
+let greeting, iconHtml;
+
+if (hour >= 5 && hour < 12) {
+    greeting = 'Доброе утро';
+    iconHtml = '<span class="nf-icon">󰖜</span>';
+} else if (hour >= 12 && hour < 17) {
+    greeting = 'Добрый день';
+    iconHtml = '<i class="fa-solid fa-sun"></i>';
+} else if (hour >= 17 && hour < 21) {
+    greeting = 'Добрый вечер';
+    iconHtml = '<span class="nf-icon">󰖛</span>';
+} else {
+    greeting = 'Спокойной ночи';
+    iconHtml = '<i class="fa-solid fa-moon"></i>';
+}
+
     
     const userName = settings.userName;
     greetingElement.textContent = userName ? `${greeting}, ${userName}` : greeting;
@@ -441,27 +442,27 @@ async function fetchWeather(latitude, longitude) {
 
 function getWeatherCondition(code) {
     let condition, iconClass;
-    // Simplified WMO codes to FontAwesome icons and conditions
-    // Full list: https://open-meteo.com/en/docs/api#current_weather
-    if (code >= 95) { // Thunderstorm
-        condition = 'Thunderstorm';
+    // Упрощенные коды WMO до иконок FontAwesome и условий
+    // Полный список: https://open-meteo.com/en/docs/api#current_weather
+    if (code >= 95) { // Гроза
+        condition = 'Гроза';
         iconClass = 'fa-cloud-bolt';
-    } else if (code >= 71) { // Snow
-        condition = 'Snow';
+    } else if (code >= 71) { // Снег
+        condition = 'Снег';
         iconClass = 'fa-snowflake';
-    } else if (code >= 51) { // Drizzle/Rain
-        condition = 'Rain';
+    } else if (code >= 51) { // Морось/Дождь
+        condition = 'Дождь';
         iconClass = 'fa-cloud-rain';
-    } else if (code >= 45) { // Fog
-        condition = 'Fog';
+    } else if (code >= 45) { // Туман
+        condition = 'Туман';
         iconClass = 'fa-smog';
-    } else if (code >= 1) { // Clear/Mostly Clear/Partly Cloudy
-        // Check for day/night to determine sun/moon icon - simple check based on time is not possible here, 
-        // so we'll use a general cloud-based icon for safety unless Open-Meteo provides is_day.
-        condition = code === 1 ? 'Mostly Clear' : (code === 2 ? 'Partly Cloudy' : 'Cloudy');
-        iconClass = code === 0 ? 'fa-sun' : 'fa-cloud-sun'; // Use sun for 0 (Clear sky)
-    } else { // 0: Clear sky
-        condition = 'Clear';
+    } else if (code >= 1) { // Ясно/Переменная облачность/Облачно
+        // Проверка на день/ночь для определения иконки солнца/луны - простая проверка на основе времени здесь невозможна, 
+        // поэтому мы будем использовать общую иконку с облаком для надежности, если Open-Meteo не предоставляет is_day.
+        condition = code === 1 ? 'Небольшая облачность' : (code === 2 ? 'Переменная облачность' : 'Облачно');
+        iconClass = code === 0 ? 'fa-sun' : 'fa-cloud-sun'; // Используем солнце для 0 (Ясное небо)
+    } else { // 0: Ясное небо
+        condition = 'Ясно';
         iconClass = 'fa-sun'; 
     }
     
@@ -510,15 +511,15 @@ function showMockWeather() {
 // ========================================
 
 const quotes = [
-    '"The only way to do great work is to love what you do." - Steve Jobs',
-    '"First, solve the problem.  Then, write the code." - John Johnson',
-    '"Simplicity is the soul of efficiency." - Austin Freeman',
-    '"Make it work, make it right, make it fast." - Kent Beck',
-    '"Talk is cheap. Show me the code." - Linus Torvalds',
-    '"Creativity is intelligence having fun." - Albert Einstein',
-    '"Done is better than perfect." - Sheryl Sandberg',
-    '"Stay hungry, stay foolish." - Steve Jobs',
-    '"Code is like humor. When you have to explain it, it\'s bad." - Cory House',
+    '"Единственный способ делать великую работу — любить то, что вы делаете." - Стив Джобс',
+    '"Сначала решите проблему. Затем напишите код." - Джон Джонсон',
+    '"Простота — душа эффективности." - Остин Фримен',
+    '"Заставь это работать, сделай это правильно, сделай это быстро." - Кент Бек',
+    '"Разговоры ничего не стоят. Покажите мне код." - Линус Торвальдс',
+    '"Творчество — это интеллект, который веселится." - Альберт Эйнштейн',
+    '"Сделанное лучше идеального." - Шерил Сэндберг',
+    '"Оставайтесь голодными, оставайтесь безрассудными." - Стив Джобс',
+    '"Код похож на юмор. Если его приходится объяснять, значит, он плох." - Кори Хаус',
 ];
 
 function updateQuote() {
