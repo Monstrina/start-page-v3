@@ -1,7 +1,3 @@
-https://monstrina.github.io/start-page-v3/
-https://monstrina.github.io/start-page-v3/
-https://monstrina.github.io/start-page-v3/
-
 # ☕ Sip - Your Cozy New Tab Page
 
 Transform your browser's new tab into a beautiful, personalized workspace with Sip. Featuring stunning Catppuccin themes, glassmorphism effects, and intelligent customization, Sip makes every new tab a delightful experience.
